@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.bootudy.model.mapper.ResultMapper">
+	<!-- <select id="search" resultMap="baseBookMap">
+		select * from book order by isbn
+	</select>
+
+	<select id="select" resultMap="baseBookMap"
+		parameterType="string">
+		select * from book where isbn=#{isbn}
+	</select>
+	
+	<resultMap type="book" id="baseBookMap">
+		<id column="isbn" property="isbn" />
+		<result column="title" property="title" />
+		<result column="author" property="author" />
+		<result column="price" property="price" />
+		<result column="content" property="desc" />
+		<result column="img" property="img" />
+		<result column="img_org" property="imgOrg" />
+	</resultMap> -->
+	
+	<select id="selectByAYM" resultMap="resultMap">
+		<!-- select * from resultview
+		where sidoName=#{sidoName} and gugunName = #{gugunName} and dongName = #{dongName} and dealYear = #{dealYear} and dealMonth = #{dealMonth} -->
+		select * from resultview where 1 = 1
+		<if test="sidoName != null and sidoName != 'none' and sidoName != ''">
+			and sidoName like CONCAT('%', #{sidoName}, '%')
+		</if>
+		<if test="gugunName != null and gugunName != 'none' and gugunName != ''">
+			and gugunName like CONCAT('%', #{gugunName}, '%')
+		</if>
+		<if test="dongName != null and dongName != 'none' and dongName != ''">
+			and dongName like CONCAT('%', #{dongName}, '%')
+		</if>
+		<if test="dealYear != null and dealYear != 0">
+			and dealYear = #{dealYear}
+		</if>
+		<if test="dealMonth != null and dealMonth != 0">
+			and dealMonth = #{dealMonth}
+		</if>
+	</select>
+	
+	<select id="selectAll" resultMap="resultMap">
+		select * from resultview;
+	</select>
+
+	<resultMap type="result" id="resultMap">
+		<result column="aptName" property="aptName" />
+		<result column="dealAmount" property="dealAmount" />
+		<result column="area" property="area" />
+		<result column="dealYear" property="dealYear" />
+		<result column="dealMonth" property="dealMonth" />
+		<result column="dealDay" property="dealDay" />
+		<result column="buildYear" property="buildYear" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="sidoName" property="sidoName" />
+		<result column="gugunName" property="gugunName" />
+		<result column="dongName" property="dongName" />
+		<result column="dongCode" property="dongCode" />
+	</resultMap>
+</mapper>
